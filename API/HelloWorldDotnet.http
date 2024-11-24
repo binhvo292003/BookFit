@@ -1,0 +1,6 @@
+@HelloWorldDotnet_HostAddress = http://localhost:5196
+
+GET {{HelloWorldDotnet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
