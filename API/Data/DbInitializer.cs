@@ -8,9 +8,9 @@ namespace API.Data
         {
             if (context.Products.Any()) return;
 
-            var products = new List<Products>
+            var products = new List<Product>
             {
-                new Products
+                new Product
                 {
                     Name = "Angular Speedster Board 2000",
                     Description =
@@ -21,7 +21,7 @@ namespace API.Data
                     Type = "Boards",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Green Angular Board 3000",
                     Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
@@ -31,7 +31,7 @@ namespace API.Data
                     Type = "Boards",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Core Board Speed Rush 3",
                     Description =
@@ -42,7 +42,7 @@ namespace API.Data
                     Type = "Boards",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Net Core Super Board",
                     Description =
@@ -53,7 +53,7 @@ namespace API.Data
                     Type = "Boards",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "React Board Super Whizzy Fast",
                     Description =
@@ -64,7 +64,7 @@ namespace API.Data
                     Type = "Boards",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Typescript Entry Board",
                     Description =
@@ -75,7 +75,7 @@ namespace API.Data
                     Type = "Boards",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Core Blue Hat",
                     Description =
@@ -86,7 +86,7 @@ namespace API.Data
                     Type = "Hats",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Green React Woolen Hat",
                     Description =
@@ -97,7 +97,7 @@ namespace API.Data
                     Type = "Hats",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Purple React Woolen Hat",
                     Description =
@@ -108,7 +108,7 @@ namespace API.Data
                     Type = "Hats",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Blue Code Gloves",
                     Description =
@@ -119,7 +119,7 @@ namespace API.Data
                     Type = "Gloves",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Green Code Gloves",
                     Description =
@@ -130,7 +130,7 @@ namespace API.Data
                     Type = "Gloves",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Purple React Gloves",
                     Description =
@@ -141,7 +141,7 @@ namespace API.Data
                     Type = "Gloves",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Green React Gloves",
                     Description =
@@ -152,7 +152,7 @@ namespace API.Data
                     Type = "Gloves",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Redis Red Boots",
                     Description =
@@ -163,7 +163,7 @@ namespace API.Data
                     Type = "Boots",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Core Red Boots",
                     Description =
@@ -174,7 +174,7 @@ namespace API.Data
                     Type = "Boots",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Core Purple Boots",
                     Description =
@@ -185,7 +185,7 @@ namespace API.Data
                     Type = "Boots",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Angular Purple Boots",
                     Description = "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
@@ -195,7 +195,7 @@ namespace API.Data
                     Type = "Boots",
                     QuantityInStock = 100
                 },
-                new Products
+                new Product
                 {
                     Name = "Angular Blue Boots",
                     Description =
@@ -207,8 +207,8 @@ namespace API.Data
                     QuantityInStock = 100
                 },
             };
-        
-            foreach(var product in products)
+
+            foreach (var product in products)
             {
                 context.Products.Add(product);
             }
