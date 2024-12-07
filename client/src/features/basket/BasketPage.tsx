@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     Paper,
     Table,
     TableBody,
@@ -8,20 +9,21 @@ import {
     TableHead,
     TableRow,
     Typography,
-} from "@mui/material";
-import { Add, Delete, Remove } from "@mui/icons-material";
-import { useStoreContext } from "../../app/context/StoreContext";
-import { useState } from "react";
-import agent from "../../app/api/agent";
-import { LoadingButton } from "@mui/lab";
-import { Grid } from "@material-ui/core";
-import BasketSummary from "./BasketSummary";
+} from '@mui/material';
+import { Add, Delete, Remove } from '@mui/icons-material';
+import { useStoreContext } from '../../app/context/StoreContext';
+import { useState } from 'react';
+import agent from '../../app/api/agent';
+import { LoadingButton } from '@mui/lab';
+import { Grid } from '@material-ui/core';
+import BasketSummary from './BasketSummary';
+import { Link } from 'react-router-dom';
 
 export default function BasketPage() {
     const { basket, setBasket, removeItem } = useStoreContext();
     const [status, setStatus] = useState({
         loading: false,
-        name: "",
+        name: '',
     });
 
     function handleAddItem(productId: number, name: string) {
@@ -29,7 +31,7 @@ export default function BasketPage() {
         agent.Basket.addItem(productId)
             .then((basket) => setBasket(basket))
             .catch((error) => console.error(error))
-            .finally(() => setStatus({ loading: false, name: "" }));
+            .finally(() => setStatus({ loading: false, name: '' }));
     }
 
     function handleRemoveItem(productId: number, quantity = 1, name: string) {
@@ -40,8 +42,7 @@ export default function BasketPage() {
             .finally(() => setStatus({ loading: false, name }));
     }
 
-    if (!basket)
-        return <Typography variant="h3">Your basket is empty</Typography>;
+    if (!basket) return <Typography variant="h3">Your basket is empty</Typography>;
 
     return (
         <>
@@ -61,7 +62,7 @@ export default function BasketPage() {
                             <TableRow
                                 key={item.productId}
                                 sx={{
-                                    "&:last-child td, &:last-child th": {
+                                    '&:last-child td, &:last-child th': {
                                         border: 0,
                                     },
                                 }}
@@ -85,15 +86,13 @@ export default function BasketPage() {
                                 <TableCell align="center">
                                     <LoadingButton
                                         loading={
-                                            status.loading &&
-                                            status.name ===
-                                                "rem" + item.productId
+                                            status.loading && status.name === 'rem' + item.productId
                                         }
                                         onClick={() =>
                                             handleRemoveItem(
                                                 item.productId,
                                                 1,
-                                                "rem" + item.productId
+                                                'rem' + item.productId
                                             )
                                         }
                                         color="error"
@@ -103,15 +102,10 @@ export default function BasketPage() {
                                     {item.quantity}
                                     <LoadingButton
                                         loading={
-                                            status.loading &&
-                                            status.name ===
-                                                "add" + item.productId
+                                            status.loading && status.name === 'add' + item.productId
                                         }
                                         onClick={() =>
-                                            handleAddItem(
-                                                item.productId,
-                                                "add" + item.productId
-                                            )
+                                            handleAddItem(item.productId, 'add' + item.productId)
                                         }
                                         color="secondary"
                                     >
@@ -119,24 +113,18 @@ export default function BasketPage() {
                                     </LoadingButton>
                                 </TableCell>
                                 <TableCell align="right">
-                                    $
-                                    {(
-                                        (item.price / 100) *
-                                        item.quantity
-                                    ).toFixed(2)}
+                                    ${((item.price / 100) * item.quantity).toFixed(2)}
                                 </TableCell>
                                 <TableCell align="right">
                                     <LoadingButton
                                         loading={
-                                            status.loading &&
-                                            status.name ===
-                                                "del" + item.productId
+                                            status.loading && status.name === 'del' + item.productId
                                         }
                                         onClick={() =>
                                             handleRemoveItem(
                                                 item.productId,
                                                 item.quantity,
-                                                "del" + item.productId
+                                                'del' + item.productId
                                             )
                                         }
                                         color="error"
@@ -153,6 +141,15 @@ export default function BasketPage() {
                 <Grid item xs={6} />
                 <Grid item xs={6}>
                     <BasketSummary />
+                    <Button
+                        component={Link}
+                        to="/checkout"
+                        variant="contained"
+                        size='large'
+                        fullWidth
+                    >
+                        Checkout
+                    </Button>
                 </Grid>
             </Grid>
         </>
