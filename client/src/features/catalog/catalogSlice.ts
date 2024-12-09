@@ -7,22 +7,24 @@ const productsAdapter = createEntityAdapter<Product>();
 
 export const fetchProductsAsync = createAsyncThunk<Product[]>(
     'catalog/fetchProductsAsync',
-    async () => {
+    async (_, thunkAPI) => {
         try {
             return await agent.Catalog.list();
         } catch (error) {
             console.log(error);
+            return thunkAPI.rejectWithValue({ error: error });
         }
     }
 )
 
 export const fetchProductAsync = createAsyncThunk<Product, number>(
     'catalog/fetchProductAsync',
-    async (productId) => {
+    async (productId, thunkAPI) => {
         try {
             return await agent.Catalog.detail(productId);
         } catch (error) {
             console.log(error);
+            return thunkAPI.rejectWithValue({ error: error });
         }
     }
 )
@@ -53,8 +55,9 @@ export const catalogSlice = createSlice({
             productsAdapter.upsertOne(state, action.payload);
             state.status = 'idle';
         });
-        builder.addCase(fetchProductAsync.rejected, (state) => {
+        builder.addCase(fetchProductAsync.rejected, (state, action) => {
             state.status = 'idle';
+            console.log(action);
         });
     })
 })

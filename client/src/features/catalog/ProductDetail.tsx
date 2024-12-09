@@ -10,9 +10,7 @@ import {
 } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../app/model/product";
 import { Grid } from "@material-ui/core";
-import agent from "../../app/api/agent";
 import { LoadingButton } from "@mui/lab";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
@@ -30,7 +28,6 @@ export default function ProductDetail() {
         productSelectors.selectById(state, parseInt(id!))
     );
     const { status: productStatus } = useAppSelector((state) => state.catalog);
-    const [loading, setLoading] = useState(true);
     const [quantity, setQuantity] = useState(0);
     const item = basket?.items.find((i) => i.productId === product?.id);
 
@@ -130,7 +127,7 @@ export default function ProductDetail() {
                                 (!item && quantity === 0)
                             }
                             loading={status.includes(
-                                "pendingAddItem" + product.id
+                                "pending"
                             )}
                             onClick={handleUpdateCart}
                             sx={{ height: "55px" }}
