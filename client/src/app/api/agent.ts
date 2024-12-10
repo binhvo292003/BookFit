@@ -13,7 +13,7 @@ interface ResponseData {
     status: number;
 }
 
-axios.defaults.baseURL = 'http://localhost:5000/api/';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.withCredentials = true;
 
 
